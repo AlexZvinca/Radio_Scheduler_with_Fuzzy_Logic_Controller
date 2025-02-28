@@ -1,0 +1,78 @@
+file 1861696 1740772644                                         
+version 3
+run Sched1-0-20250228-21:57:07-7776
+attr configname Sched1
+attr datetime 20250228-21:57:07
+attr datetimef 20250228-215707
+attr experiment Sched1
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network RadioSch2
+attr processid 7776
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config description "low job arrival rate"
+config *.scalar-recording true
+config *.vector-recording true
+config **.user[*].generator.sendIaTime "0.2 ms"
+config *.user[*].generator.networkLoad 0.5
+config *.user[*].generator.packetsPerUser 4
+config *.user[*].generator.channels 14
+config *.user[*].generator.usersCount 7
+config *.user[*].generator.MAX_Sim "10 s"
+config *.usersCount 7
+config network RadioSch2
+config sim-time-limit 100h
+config cpu-time-limit 300s
+config simtime-resolution ns
+config record-eventlog true
+
+vector 0 RadioSch2.sink lifetime_user0:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "User 0 Packet Lifetime"
+attr unit s
+vector 1 RadioSch2.sink lifetime_user1:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "User 1 Packet Lifetime"
+attr unit s
+vector 2 RadioSch2.sink lifetime_user2:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "User 2 Packet Lifetime"
+attr unit s
+vector 3 RadioSch2.sink lifetime_user3:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "User 3 Packet Lifetime"
+attr unit s
+vector 4 RadioSch2.sink lifetime_user4:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "User 4 Packet Lifetime"
+attr unit s
+vector 5 RadioSch2.sink lifetime_user5:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "User 5 Packet Lifetime"
+attr unit s
+vector 6 RadioSch2.sink lifetime_user6:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "User 6 Packet Lifetime"
+attr unit s
+0	2056 276017 82 297988 1 9998 10452 0.001860098 12.783638715 21519.272916664 75390.479174334
+1	278073 264432 84 297889 1 9996 10008 0.000759992 13.524398286 18835.790361136 69009.087005499
+2	542505 262034 86 298032 1 10000 9922 0.000459632 12.695982542 15543.255994872 45875.86684629
+3	804539 260591 89 298036 1 10000 9868 2.3612e-05 9.522217786 13929.389080268 36766.790840329
+4	1065130 268817 91 298026 1 9999 10184 0.000545751 10.064305754 12735.096408988 32226.148262302
+5	1333947 264735 96 297953 1 9997 10032 0.000111716 10.256490211 11170.979043632 24558.949236071
+6	1598682 263012 101 298002 1 9998 9956 0.000276558 6.512234829 9166.440600056 15068.876925104
+
