@@ -43,13 +43,13 @@ void Scheduler::initialize()
            NrBlocks[i]=0;
            //weights[i] = i+1;
            if(i<NrUsers/3) {
-               weights[i] = 2; //LP
+               weights[i] = par("W_LP").intValue(); //LP
            }
            else if(i<2*(NrUsers/3)){
-               weights[i] = 6; //MP
+               weights[i] = par("W_MP").intValue(); //MP
            }
            else if(i<NrUsers){
-               weights[i] = 10; //HP
+               weights[i] = par("W_HP").intValue(); //HP
            }
            radioQuality[i] = uniform(1, 10);
            lastServedTime[i] = simTime();
@@ -110,6 +110,13 @@ void Scheduler::handleMessage(cMessage *msg)
 
         for (int i = 0; i < NrUsers; i++) {
 
+                   //update weighted value based on FLC modifications
+                   if(i>=2*(NrUsers/3)){
+                           weights[i] = par("W_HP").intValue();
+                   }
+
+                   EV << "User: " << i <<" New weight: " << weights[i] << endl;
+
                    //OS
                    //priorities[i] = radioQuality[i];
 
@@ -142,7 +149,7 @@ void Scheduler::handleMessage(cMessage *msg)
 
                 if (remainingBlocks > 0 && q[userIndex] > 0) {
 
-                    //the best channel from the remaining emtpy channels
+                    //the best channel from the remaining empty channels
                     int allocatedBlocks = std::ceil((userPriority / totalPriority) * remainingBlocks);
                     allocatedBlocks = std::min(allocatedBlocks, q[userIndex]); // Do not allocate more than available in queue
                     allocatedBlocks = std::min(allocatedBlocks, remainingBlocks); // Do not exceed remaining blocks

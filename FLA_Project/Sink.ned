@@ -20,7 +20,7 @@ simple Sink
 {
  parameters:
         int gateSize;
-        double meanHPDelay @mutable;
+        double meanHPDelay = default (1100.00) @mutable;
         @display("i=block/sink");
         @signal[lifetime_user0](type="simtime_t");
         @signal[lifetime_user1](type="simtime_t");
