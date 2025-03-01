@@ -27,4 +27,10 @@ simple Scheduler
     gates:
         output txScheduling[gateSize];
         input rxInfo[gateSize];
+        
+        input rxFLC;
+        output txFLC;
+        
+        //input rxMeanDelay;
+        
 }

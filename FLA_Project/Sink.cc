@@ -27,6 +27,9 @@ void Sink::initialize()
             EV << "Registered signal: " << signalName << endl;
         }
 
+    meanHPDelay = 0.0;
+    totalHPDelay = 0.0;
+    hpPacketCount = 0.0;
     //lifetimeSignal = registerSignal("lifetime");
 }
 
@@ -39,6 +42,21 @@ void Sink::handleMessage(cMessage *msg)
     for(int i=0;i < NrUsers;i++){
         if (msg->arrivedOn("rxPackets",i)) {
             EV << "Message arrived on rxPackets[" << i << "]" << endl;
+
+            if(i>=2*(NrUsers/3)){
+                double ms = lifetime.dbl() * 1000;
+                totalHPDelay += ms;
+                hpPacketCount++;
+
+                meanHPDelay = totalHPDelay/hpPacketCount;
+                par("meanHPDelay") = meanHPDelay;
+
+                EV << "Mean HP delay: " << meanHPDelay << endl;
+
+//                cMessage *meanDelayMsg = new cMessage("meanHPDelayMsg");
+//                meanDelayMsg->addPar("meanHPDelay") = meanHPDelay;
+//                send(meanDelayMsg, "txMeanDelay");
+            }
 
             emit(lifetimeSignals[i], lifetime);
             break;

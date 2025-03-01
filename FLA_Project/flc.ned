@@ -4,6 +4,8 @@ simple FLC
 		xml config= xmldoc("conf.xml");
 	gates:
 		input in;
+		input schedIn;
+		output schedOut;
 }
  
  network FLC_Net

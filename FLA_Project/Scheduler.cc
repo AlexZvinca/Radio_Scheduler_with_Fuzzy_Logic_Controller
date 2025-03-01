@@ -37,10 +37,20 @@ void Scheduler::initialize()
     NrUsers = par("gateSize").intValue();
     NrOfChannels = 14;
     selfMsg = new cMessage("selfMsg");
+
     for(int i=0; i<NrUsers;i++){
            q[i]=0;
            NrBlocks[i]=0;
-           weights[i] = i+1;
+           //weights[i] = i+1;
+           if(i<NrUsers/3) {
+               weights[i] = 2; //LP
+           }
+           else if(i<2*(NrUsers/3)){
+               weights[i] = 6; //MP
+           }
+           else if(i<NrUsers){
+               weights[i] = 10; //HP
+           }
            radioQuality[i] = uniform(1, 10);
            lastServedTime[i] = simTime();
 
@@ -107,10 +117,10 @@ void Scheduler::handleMessage(cMessage *msg)
                    //priorities[i] = simTime().dbl() - lastServedTime[i].dbl();
 
                    //WRR
-                   //priorities[i] = weights[i] * (simTime().dbl() - lastServedTime[i].dbl());
+                   priorities[i] = weights[i] * (simTime().dbl() - lastServedTime[i].dbl());
 
                    //PF
-                   priorities[i] = radioQuality[i] *  weights[i] * (simTime().dbl() - lastServedTime[i].dbl());
+                   //priorities[i] = radioQuality[i] *  weights[i] * (simTime().dbl() - lastServedTime[i].dbl());
 
                    //LQ
                    //priorities[i] = q[i] * weights[i];
@@ -181,4 +191,16 @@ void Scheduler::handleMessage(cMessage *msg)
 
         scheduleAt(simTime()+par("schedulingPeriod").doubleValue(), selfMsg);
     }
+
+//    if (msg->arrivedOn("rxMeanDelay")) {
+//            // Retrieve the mean delay from Sink
+//            double meanHPDelay = msg->par("meanHPDelay").doubleValue();
+//            EV << "Received mean delay from Sink: " << meanHPDelay << "s" << endl;
+//
+//            // Send mean delay to FLC
+//            cMessage *flcMsg = new cMessage("meanHPDelayToFLC");
+//            flcMsg->addPar("meanHPDelay") = meanHPDelay;
+//            send(flcMsg, "schedOut");
+//        }
+
 }

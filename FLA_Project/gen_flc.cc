@@ -23,9 +23,9 @@ void GeneratorFLC::handleMessage(cMessage *msg)
     ASSERT(msg==sendMessageEvent);
 	ev<<" START FLC\n";
     cMessage *msgr = new cMessage("start_flc"); 
-    send(msgr,"out");
-    next_time = simTime()+ flc_time;
-    scheduleAt(next_time,sendMessageEvent);
+    send(msgr, "out");
+    next_time = simTime() + flc_time;
+    scheduleAt(next_time, sendMessageEvent);
 }
 
 void GeneratorFLC::finish()

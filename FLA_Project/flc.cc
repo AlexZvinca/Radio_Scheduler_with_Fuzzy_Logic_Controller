@@ -561,33 +561,36 @@ int FLC::fuzzy_inference(int* inp, int nb_inp, int delta)
 
 void FLC::handleMessage(cMessage *msg)
 {
-	if (!strcmp(msg->getName(),"start_flc"))
+	if (!strcmp(msg->getName(), "start_flc"))
 	{
 
-	    ev << "Calculez nou HP" << endl;
-	    int wantedDelay = 10;//(int)getParentModule()->par("delayLimit");
-	    int currentDelay = 15;//round((double)getParentModule()->getSubmodule("netwrk")->par("meanDelayHP"));
-	    int W_HP = 4;//(int)getParentModule()->getSubmodule("hp_fifo")->par("weight");
-	    int B = 31;//(int)getParentModule()->getSubmodule("netwrk")->par("B");
+	    ev << "Calculating new W_HP..." << endl;
+	    int wantedDelay = 900;//(int)getParentModule()->par("delayLimit");
+	    int currentDelay = round((double)getParentModule()->getSubmodule("sink")->par("meanHPDelay"));
+	    int W_HP = 10;//(int)getParentModule()->getSubmodule("hp_fifo")->par("weight");
+	    int B = 14;//(int)getParentModule()->getSubmodule("netwrk")->par("B");
+
+	    ev << "FLC received mean HP delay: " << currentDelay << "ms" << endl;
 
 	    int new_W_HP = W_HP;
 		int diff = wantedDelay - currentDelay;
 
 		qtime.record (currentDelay);
-		ev<<" Dif nescalat = "<<diff<<"\n";
+		ev <<"Unscaled Diff = " << diff << "\n";
 
 		diff = scale(0, 62, -10, 10, diff);
 		W_HP = scale(0, 62, 0, B, W_HP);
-		ev<<" Dif scalat = "<<diff<<"\n";
+		ev <<" Scaled Diff = " << diff << "\n";
 			
 		int delta = 0;//(int) getParentModule()->par("delta");
-		int inp[2]={diff,W_HP};
+		int inp[2] = {diff, W_HP};
 		
-		int result = fuzzy_inference(inp,2, delta);
+		int result = fuzzy_inference(inp, 2, delta);
 		result_dep.record (result);
+		ev << "Fuzzy Output = " << result << "\n";
 
 		int res = round(scale((B * -1)/2, B/2, 0, 62, result));
-		ev<<" Result = "<<result<<"\nRes= "<<res<<"\n";
+		ev << "Scaled Result = " << res << "\n";
 
 		res_dep.record (res);
 
@@ -600,7 +603,7 @@ void FLC::handleMessage(cMessage *msg)
 		cPar& W_HP_r = getParentModule()->getSubmodule("hp_fifo")->par("weight");
 		W_HP_r.setIntValue(new_W_HP);
 */
-		ev<<"Pondere noua: "<<new_W_HP<<"\n\n";
+		 ev << "New W_HP = " << new_W_HP << "\n\n";
 		
 		qtimew.record(new_W_HP);
 		//cMessage *job = new cMessage("clear");

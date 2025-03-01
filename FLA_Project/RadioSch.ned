@@ -15,6 +15,8 @@
 import User;
 import Sink;
 import Scheduler;
+import GeneratorFLC;
+import FLC;
 
 network RadioSch2
 {
@@ -25,6 +27,16 @@ network RadioSch2
         scheduler: Scheduler {
             gateSize = parent.usersCount;
             @display("p=120,40");
+        }
+        
+        flc: FLC {
+            parameters:
+                @display("p=89,100");
+        }
+        
+        gen: GeneratorFLC {
+            parameters:
+                @display("p=209,100");
         }
 
         sink: Sink {
@@ -37,6 +49,11 @@ network RadioSch2
         }
 
     connections:
+        
+        gen.out --> flc.in;
+        scheduler.txFLC --> flc.schedIn;
+        flc.schedOut --> scheduler.rxFLC;
+        
         for i=0..usersCount - 1 {
             scheduler.txScheduling[i] --> user[i].rxScheduling;
             user[i].txPackets --> sink.rxPackets[i];
