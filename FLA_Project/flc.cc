@@ -568,7 +568,7 @@ void FLC::handleMessage(cMessage *msg)
 	    int wantedDelay = 900;//(int)getParentModule()->par("delayLimit");
 	    int currentDelay = round((double)getParentModule()->getSubmodule("sink")->par("meanHPDelay"));
 	    int W_HP = (int)getParentModule()->getSubmodule("scheduler")->par("W_HP");
-	    int B = 14;//(int)getParentModule()->getSubmodule("netwrk")->par("B");
+	    int B = 30;//(int)getParentModule()->getSubmodule("netwrk")->par("B"); max weight
 
 	    ev << "FLC received mean HP delay: " << currentDelay << "ms" << endl;
 	    ev << "Received W_HP: " << W_HP << endl;
@@ -579,11 +579,11 @@ void FLC::handleMessage(cMessage *msg)
 		qtime.record (currentDelay);
 		ev <<"Unscaled Diff = " << diff << "\n";
 
-		diff = scale(0, 62, -10, 10, diff);
+		diff = scale(0, 62, -500, 500, diff);
 		W_HP = scale(0, 62, 0, B, W_HP);
 		ev <<" Scaled Diff = " << diff << "\n";
 			
-		int delta = 0;//(int) getParentModule()->par("delta");
+		int delta = 40;//(int) getParentModule()->par("delta");
 		int inp[2] = {diff, W_HP};
 		
 		int result = fuzzy_inference(inp, 2, delta);
