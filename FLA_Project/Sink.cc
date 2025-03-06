@@ -28,8 +28,8 @@ void Sink::initialize()
         }
 
     meanHPDelay = 0.0;
-    totalHPDelay = 0.0;
-    hpPacketCount = 0.0;
+    //totalHPDelay = 0.0;
+    //hpPacketCount = 0.0;
     //lifetimeSignal = registerSignal("lifetime");
 }
 
@@ -38,19 +38,27 @@ void Sink::handleMessage(cMessage *msg)
 
     int NrUsers = par("gateSize").intValue();
     simtime_t lifetime = simTime() - msg->getCreationTime();
+    double alpha = 0.7; //alpha for Exponentially Weighted Moving Average
 
     for(int i=0;i < NrUsers;i++){
         if (msg->arrivedOn("rxPackets",i)) {
             EV << "Message arrived on rxPackets[" << i << "]" << endl;
 
-            if(i>=2*(NrUsers/3)){
+            if(i>=round(NrUsers*0.7)){
                 double ms = lifetime.dbl() * 1000;
-                totalHPDelay += ms;
-                hpPacketCount++;
 
-                meanHPDelay = totalHPDelay/hpPacketCount;
+//                totalHPDelay += ms;
+//                hpPacketCount++;
+//                meanHPDelay = totalHPDelay/hpPacketCount;
+
+                if(meanHPDelay == 0.0){
+                    meanHPDelay = ms;
+                }
+                else{
+                    meanHPDelay = alpha * meanHPDelay + (alpha-1) * ms;
+                }
+
                 par("meanHPDelay") = meanHPDelay;
-
                 EV << "Mean HP delay: " << meanHPDelay << endl;
 
 //                cMessage *meanDelayMsg = new cMessage("meanHPDelayMsg");

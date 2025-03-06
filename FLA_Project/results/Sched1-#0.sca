@@ -1,8 +1,8 @@
 version 3
-run Sched1-0-20250301-19:46:55-4312
+run Sched1-0-20250306-21:19:58-12896
 attr configname Sched1
-attr datetime 20250301-19:46:55
-attr datetimef 20250301-194655
+attr datetime 20250306-21:19:58
+attr datetimef 20250306-211958
 attr experiment Sched1
 attr inifile omnetpp.ini
 attr iterationvars ""
@@ -10,7 +10,7 @@ attr iterationvarsd ""
 attr iterationvarsf ""
 attr measurement ""
 attr network RadioSch2
-attr processid 4312
+attr processid 12896
 attr repetition 0
 attr replication #0
 attr resultdir results
@@ -20,7 +20,7 @@ config description "low job arrival rate"
 config *.scalar-recording true
 config *.vector-recording true
 config **.user[*].generator.sendIaTime "0.2 ms"
-config *.user[*].generator.networkLoad 0.5
+config *.user[*].generator.networkLoad 0.8
 config *.user[*].generator.packetsPerUser 4
 config *.user[*].generator.channels 14
 config *.user[*].generator.usersCount 7
@@ -36,7 +36,7 @@ par RadioSch2.scheduler typename "\"Scheduler\""
 par RadioSch2.scheduler schedulingPeriod 1ms
 attr unit ms
 par RadioSch2.scheduler gateSize 7
-par RadioSch2.scheduler W_HP 29
+par RadioSch2.scheduler W_HP 1
 attr mutable ""
 par RadioSch2.scheduler W_MP 6
 par RadioSch2.scheduler W_LP 2
@@ -45,74 +45,74 @@ par RadioSch2.flc config "<FLC>...</FLC> at D:/Facultate/An 4/Semestrul 2/Fuzzy 
 par RadioSch2.gen typename "\"GeneratorFLC\""
 par RadioSch2.sink typename "\"Sink\""
 par RadioSch2.sink gateSize 7
-par RadioSch2.sink meanHPDelay 865.422
+par RadioSch2.sink meanHPDelay -3093.09
 attr mutable ""
-scalar RadioSch2.sink lifetime_user6:mean 0.84526321816553
+scalar RadioSch2.sink lifetime_user6:mean 12.06812244218
 attr interpolationmode none
 attr recordingmode mean
 attr title "User 6 Packet Lifetime, mean"
 attr unit s
-scalar RadioSch2.sink lifetime_user6:max 7.457380931
+scalar RadioSch2.sink lifetime_user6:max 54.984343033
 attr interpolationmode none
 attr recordingmode max
 attr title "User 6 Packet Lifetime, max"
 attr unit s
-scalar RadioSch2.sink lifetime_user5:mean 0.86383363672569
+scalar RadioSch2.sink lifetime_user5:mean 9.1786257871674
 attr interpolationmode none
 attr recordingmode mean
 attr title "User 5 Packet Lifetime, mean"
 attr unit s
-scalar RadioSch2.sink lifetime_user5:max 6.828281669
+scalar RadioSch2.sink lifetime_user5:max 51.823357215
 attr interpolationmode none
 attr recordingmode max
 attr title "User 5 Packet Lifetime, max"
 attr unit s
-scalar RadioSch2.sink lifetime_user4:mean 0.88669446278358
+scalar RadioSch2.sink lifetime_user4:mean 6.1256714376036
 attr interpolationmode none
 attr recordingmode mean
 attr title "User 4 Packet Lifetime, mean"
 attr unit s
-scalar RadioSch2.sink lifetime_user4:max 9.394369867
+scalar RadioSch2.sink lifetime_user4:max 31.929462609
 attr interpolationmode none
 attr recordingmode max
 attr title "User 4 Packet Lifetime, max"
 attr unit s
-scalar RadioSch2.sink lifetime_user3:mean 1.8746042249756
+scalar RadioSch2.sink lifetime_user3:mean 0.78458324096146
 attr interpolationmode none
 attr recordingmode mean
 attr title "User 3 Packet Lifetime, mean"
 attr unit s
-scalar RadioSch2.sink lifetime_user3:max 11.716386424
+scalar RadioSch2.sink lifetime_user3:max 7.917424559
 attr interpolationmode none
 attr recordingmode max
 attr title "User 3 Packet Lifetime, max"
 attr unit s
-scalar RadioSch2.sink lifetime_user2:mean 1.7619904586302
+scalar RadioSch2.sink lifetime_user2:mean 0.74201176291179
 attr interpolationmode none
 attr recordingmode mean
 attr title "User 2 Packet Lifetime, mean"
 attr unit s
-scalar RadioSch2.sink lifetime_user2:max 12.695982542
+scalar RadioSch2.sink lifetime_user2:max 5.967370444
 attr interpolationmode none
 attr recordingmode max
 attr title "User 2 Packet Lifetime, max"
 attr unit s
-scalar RadioSch2.sink lifetime_user1:mean 2.1149870464764
+scalar RadioSch2.sink lifetime_user1:mean 6.5225446296782
 attr interpolationmode none
 attr recordingmode mean
 attr title "User 1 Packet Lifetime, mean"
 attr unit s
-scalar RadioSch2.sink lifetime_user1:max 14.524398286
+scalar RadioSch2.sink lifetime_user1:max 53.913867507
 attr interpolationmode none
 attr recordingmode max
 attr title "User 1 Packet Lifetime, max"
 attr unit s
-scalar RadioSch2.sink lifetime_user0:mean 2.1102442514987
+scalar RadioSch2.sink lifetime_user0:mean 3.8902902711529
 attr interpolationmode none
 attr recordingmode mean
 attr title "User 0 Packet Lifetime, mean"
 attr unit s
-scalar RadioSch2.sink lifetime_user0:max 12.580626659
+scalar RadioSch2.sink lifetime_user0:max 27.242927597
 attr interpolationmode none
 attr recordingmode max
 attr title "User 0 Packet Lifetime, max"
@@ -122,7 +122,7 @@ par RadioSch2.user[0].generator sendIaTime 0.2ms
 attr unit ms
 par RadioSch2.user[0].generator MAX_Sim 10000ms
 attr unit ms
-par RadioSch2.user[0].generator networkLoad 0.5
+par RadioSch2.user[0].generator networkLoad 0.8
 par RadioSch2.user[0].generator packetsPerUser 4
 par RadioSch2.user[0].generator usersCount 7
 par RadioSch2.user[0].generator channels 14
@@ -133,7 +133,7 @@ par RadioSch2.user[1].generator sendIaTime 0.2ms
 attr unit ms
 par RadioSch2.user[1].generator MAX_Sim 10000ms
 attr unit ms
-par RadioSch2.user[1].generator networkLoad 0.5
+par RadioSch2.user[1].generator networkLoad 0.8
 par RadioSch2.user[1].generator packetsPerUser 4
 par RadioSch2.user[1].generator usersCount 7
 par RadioSch2.user[1].generator channels 14
@@ -144,7 +144,7 @@ par RadioSch2.user[2].generator sendIaTime 0.2ms
 attr unit ms
 par RadioSch2.user[2].generator MAX_Sim 10000ms
 attr unit ms
-par RadioSch2.user[2].generator networkLoad 0.5
+par RadioSch2.user[2].generator networkLoad 0.8
 par RadioSch2.user[2].generator packetsPerUser 4
 par RadioSch2.user[2].generator usersCount 7
 par RadioSch2.user[2].generator channels 14
@@ -155,7 +155,7 @@ par RadioSch2.user[3].generator sendIaTime 0.2ms
 attr unit ms
 par RadioSch2.user[3].generator MAX_Sim 10000ms
 attr unit ms
-par RadioSch2.user[3].generator networkLoad 0.5
+par RadioSch2.user[3].generator networkLoad 0.8
 par RadioSch2.user[3].generator packetsPerUser 4
 par RadioSch2.user[3].generator usersCount 7
 par RadioSch2.user[3].generator channels 14
@@ -166,7 +166,7 @@ par RadioSch2.user[4].generator sendIaTime 0.2ms
 attr unit ms
 par RadioSch2.user[4].generator MAX_Sim 10000ms
 attr unit ms
-par RadioSch2.user[4].generator networkLoad 0.5
+par RadioSch2.user[4].generator networkLoad 0.8
 par RadioSch2.user[4].generator packetsPerUser 4
 par RadioSch2.user[4].generator usersCount 7
 par RadioSch2.user[4].generator channels 14
@@ -177,7 +177,7 @@ par RadioSch2.user[5].generator sendIaTime 0.2ms
 attr unit ms
 par RadioSch2.user[5].generator MAX_Sim 10000ms
 attr unit ms
-par RadioSch2.user[5].generator networkLoad 0.5
+par RadioSch2.user[5].generator networkLoad 0.8
 par RadioSch2.user[5].generator packetsPerUser 4
 par RadioSch2.user[5].generator usersCount 7
 par RadioSch2.user[5].generator channels 14
@@ -188,7 +188,7 @@ par RadioSch2.user[6].generator sendIaTime 0.2ms
 attr unit ms
 par RadioSch2.user[6].generator MAX_Sim 10000ms
 attr unit ms
-par RadioSch2.user[6].generator networkLoad 0.5
+par RadioSch2.user[6].generator networkLoad 0.8
 par RadioSch2.user[6].generator packetsPerUser 4
 par RadioSch2.user[6].generator usersCount 7
 par RadioSch2.user[6].generator channels 14

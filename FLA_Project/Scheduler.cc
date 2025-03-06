@@ -42,13 +42,13 @@ void Scheduler::initialize()
            q[i]=0;
            NrBlocks[i]=0;
            //weights[i] = i+1;
-           if(i<NrUsers/3) {
+           if(i < round(NrUsers * 0.3)) {
                weights[i] = par("W_LP").intValue(); //LP
            }
-           else if(i<2*(NrUsers/3)){
+           else if(i < round(NrUsers * 0.7)){
                weights[i] = par("W_MP").intValue(); //MP
            }
-           else if(i<NrUsers){
+           else if(i < NrUsers){
                weights[i] = par("W_HP").intValue(); //HP
            }
            radioQuality[i] = uniform(1, 10);
