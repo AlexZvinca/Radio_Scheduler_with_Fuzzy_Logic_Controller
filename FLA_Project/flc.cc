@@ -566,7 +566,7 @@ void FLC::handleMessage(cMessage *msg)
 
 	    ev << "Calculating new W_HP..." << endl;
 	    int wantedDelayHP = 900;//(int)getParentModule()->par("delayLimit");
-	    int wantedDelayMP = 1000;
+	    int wantedDelayMP = 1300;
 	    int currentDelayHP = round((double)getParentModule()->getSubmodule("sink")->par("meanHPDelay"));
 	    int currentDelayMP = round((double)getParentModule()->getSubmodule("sink")->par("meanMPDelay"));
 	    int W_HP = (int)getParentModule()->getSubmodule("scheduler")->par("W_HP");
@@ -586,8 +586,8 @@ void FLC::handleMessage(cMessage *msg)
 		ev <<"Unscaled HP Diff = " << diffHP << "\n";
 		ev <<"Unscaled MP Diff = " << diffMP << "\n";
 
-		diffHP = scale(0, 62, -500, 500, diffHP);
-		diffMP = scale(0, 62, -500, 500, diffMP);
+		diffHP = scale(0, 62, -100, 100, diffHP);
+		diffMP = scale(0, 62, -100, 100, diffMP);
 
 		W_HP = scale(0, 62, 0, B, W_HP);
 		ev <<" Scaled HP Diff = " << diffHP << "\n";

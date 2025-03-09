@@ -111,7 +111,7 @@ void Scheduler::handleMessage(cMessage *msg)
         for (int i = 0; i < NrUsers; i++) {
 
                    //update weighted value based on FLC modifications
-                   if(i>=2*(NrUsers/3)){
+                   if(i >= round(NrUsers*0.7)){
                            weights[i] = par("W_HP").intValue();
                    }
 
