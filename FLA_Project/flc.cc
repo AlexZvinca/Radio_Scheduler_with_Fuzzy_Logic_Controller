@@ -565,26 +565,36 @@ void FLC::handleMessage(cMessage *msg)
 	{
 
 	    ev << "Calculating new W_HP..." << endl;
-	    int wantedDelay = 900;//(int)getParentModule()->par("delayLimit");
-	    int currentDelay = round((double)getParentModule()->getSubmodule("sink")->par("meanHPDelay"));
+	    int wantedDelayHP = 900;//(int)getParentModule()->par("delayLimit");
+	    int wantedDelayMP = 1000;
+	    int currentDelayHP = round((double)getParentModule()->getSubmodule("sink")->par("meanHPDelay"));
+	    int currentDelayMP = round((double)getParentModule()->getSubmodule("sink")->par("meanMPDelay"));
 	    int W_HP = (int)getParentModule()->getSubmodule("scheduler")->par("W_HP");
 	    int B = 30;//(int)getParentModule()->getSubmodule("netwrk")->par("B"); max weight
 
-	    ev << "FLC received mean HP delay: " << currentDelay << "ms" << endl;
+	    ev << "FLC received mean HP delay: " << currentDelayHP << "ms" << endl;
+	    ev << "FLC received mean MP delay: " << currentDelayMP << "ms" << endl;
 	    ev << "Received W_HP: " << W_HP << endl;
 
 	    int new_W_HP = W_HP;
-		int diff = wantedDelay - currentDelay;
+		int diffHP = wantedDelayHP - currentDelayHP;
+		int diffMP = wantedDelayMP - currentDelayMP;
 
-		qtime.record (currentDelay);
-		ev <<"Unscaled Diff = " << diff << "\n";
+		qtime.record (currentDelayHP);
+		qtime.record (currentDelayMP);
 
-		diff = scale(0, 62, -500, 500, diff);
+		ev <<"Unscaled HP Diff = " << diffHP << "\n";
+		ev <<"Unscaled MP Diff = " << diffMP << "\n";
+
+		diffHP = scale(0, 62, -500, 500, diffHP);
+		diffMP = scale(0, 62, -500, 500, diffMP);
+
 		W_HP = scale(0, 62, 0, B, W_HP);
-		ev <<" Scaled Diff = " << diff << "\n";
+		ev <<" Scaled HP Diff = " << diffHP << "\n";
+		ev <<" Scaled MP Diff = " << diffMP << "\n";
 			
-		int delta = 40;//(int) getParentModule()->par("delta");
-		int inp[2] = {diff, W_HP};
+		int delta = 4;//(int) getParentModule()->par("delta");
+		int inp[2] = {diffHP, diffMP};
 		
 		int result = fuzzy_inference(inp, 2, delta);
 		result_dep.record (result);

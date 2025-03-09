@@ -31,6 +31,7 @@ private:
     double totalHPDelay;
     int hpPacketCount;
     double meanHPDelay;
+    double meanMPDelay;
   protected:
     virtual void initialize();
     virtual void handleMessage(cMessage *msg);
