@@ -1,8 +1,8 @@
 version 3
-run Sched1-0-20250309-17:38:06-14152
+run Sched1-0-20250317-19:22:22-17676
 attr configname Sched1
-attr datetime 20250309-17:38:06
-attr datetimef 20250309-173806
+attr datetime 20250317-19:22:22
+attr datetimef 20250317-192222
 attr experiment Sched1
 attr inifile omnetpp.ini
 attr iterationvars ""
@@ -10,7 +10,7 @@ attr iterationvarsd ""
 attr iterationvarsf ""
 attr measurement ""
 attr network RadioSch2
-attr processid 14152
+attr processid 17676
 attr repetition 0
 attr replication #0
 attr resultdir results
@@ -36,7 +36,7 @@ par RadioSch2.scheduler typename "\"Scheduler\""
 par RadioSch2.scheduler schedulingPeriod 1ms
 attr unit ms
 par RadioSch2.scheduler gateSize 7
-par RadioSch2.scheduler W_HP 1
+par RadioSch2.scheduler W_HP 29
 attr mutable ""
 par RadioSch2.scheduler W_MP 6
 par RadioSch2.scheduler W_LP 2
@@ -45,76 +45,76 @@ par RadioSch2.flc config "<FLC>...</FLC> at D:/Facultate/An 4/Semestrul 2/Fuzzy 
 par RadioSch2.gen typename "\"GeneratorFLC\""
 par RadioSch2.sink typename "\"Sink\""
 par RadioSch2.sink gateSize 7
-par RadioSch2.sink meanHPDelay -3250.71
+par RadioSch2.sink meanHPDelay -778.166
 attr mutable ""
-par RadioSch2.sink meanMPDelay -1718.43
+par RadioSch2.sink meanMPDelay -3933.84
 attr mutable ""
-scalar RadioSch2.sink lifetime_user6:mean 15.634132294396
+scalar RadioSch2.sink lifetime_user6:mean 0.70599190030789
 attr interpolationmode none
 attr recordingmode mean
 attr title "User 6 Packet Lifetime, mean"
 attr unit s
-scalar RadioSch2.sink lifetime_user6:max 57.485453536
+scalar RadioSch2.sink lifetime_user6:max 5.069121856
 attr interpolationmode none
 attr recordingmode max
 attr title "User 6 Packet Lifetime, max"
 attr unit s
-scalar RadioSch2.sink lifetime_user5:mean 9.762412276502
+scalar RadioSch2.sink lifetime_user5:mean 0.69969476812521
 attr interpolationmode none
 attr recordingmode mean
 attr title "User 5 Packet Lifetime, mean"
 attr unit s
-scalar RadioSch2.sink lifetime_user5:max 54.823357215
+scalar RadioSch2.sink lifetime_user5:max 5.202119055
 attr interpolationmode none
 attr recordingmode max
 attr title "User 5 Packet Lifetime, max"
 attr unit s
-scalar RadioSch2.sink lifetime_user4:mean 1.1517439228107
+scalar RadioSch2.sink lifetime_user4:mean 6.4834130549607
 attr interpolationmode none
 attr recordingmode mean
 attr title "User 4 Packet Lifetime, mean"
 attr unit s
-scalar RadioSch2.sink lifetime_user4:max 10.211165853
+scalar RadioSch2.sink lifetime_user4:max 32.868263392
 attr interpolationmode none
 attr recordingmode max
 attr title "User 4 Packet Lifetime, max"
 attr unit s
-scalar RadioSch2.sink lifetime_user3:mean 1.0503123798015
+scalar RadioSch2.sink lifetime_user3:mean 6.1008130055837
 attr interpolationmode none
 attr recordingmode mean
 attr title "User 3 Packet Lifetime, mean"
 attr unit s
-scalar RadioSch2.sink lifetime_user3:max 8.917424559
+scalar RadioSch2.sink lifetime_user3:max 32.067052783
 attr interpolationmode none
 attr recordingmode max
 attr title "User 3 Packet Lifetime, max"
 attr unit s
-scalar RadioSch2.sink lifetime_user2:mean 0.97214484530612
+scalar RadioSch2.sink lifetime_user2:mean 4.4959611614684
 attr interpolationmode none
 attr recordingmode mean
 attr title "User 2 Packet Lifetime, mean"
 attr unit s
-scalar RadioSch2.sink lifetime_user2:max 8.967370444
+scalar RadioSch2.sink lifetime_user2:max 25.285508273
 attr interpolationmode none
 attr recordingmode max
 attr title "User 2 Packet Lifetime, max"
 attr unit s
-scalar RadioSch2.sink lifetime_user1:mean 8.99136706909
+scalar RadioSch2.sink lifetime_user1:mean 18.706666753632
 attr interpolationmode none
 attr recordingmode mean
 attr title "User 1 Packet Lifetime, mean"
 attr unit s
-scalar RadioSch2.sink lifetime_user1:max 60.913867507
+scalar RadioSch2.sink lifetime_user1:max 80.554256441
 attr interpolationmode none
 attr recordingmode max
 attr title "User 1 Packet Lifetime, max"
 attr unit s
-scalar RadioSch2.sink lifetime_user0:mean 5.9204717591613
+scalar RadioSch2.sink lifetime_user0:mean 9.3920598484913
 attr interpolationmode none
 attr recordingmode mean
 attr title "User 0 Packet Lifetime, mean"
 attr unit s
-scalar RadioSch2.sink lifetime_user0:max 32.501477412
+scalar RadioSch2.sink lifetime_user0:max 40.501477412
 attr interpolationmode none
 attr recordingmode max
 attr title "User 0 Packet Lifetime, max"

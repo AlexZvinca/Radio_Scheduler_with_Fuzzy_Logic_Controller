@@ -586,17 +586,29 @@ void FLC::handleMessage(cMessage *msg)
 		ev <<"Unscaled HP Diff = " << diffHP << "\n";
 		ev <<"Unscaled MP Diff = " << diffMP << "\n";
 
-		diffHP = scale(0, 62, -100, 100, diffHP);
-		diffMP = scale(0, 62, -100, 100, diffMP);
+		diffHP = scale(0, 62, -15000, 15000, diffHP);
+		diffMP = scale(0, 62, -15000, 15000, diffMP);
 
 		W_HP = scale(0, 62, 0, B, W_HP);
 		ev <<" Scaled HP Diff = " << diffHP << "\n";
 		ev <<" Scaled MP Diff = " << diffMP << "\n";
 			
-		int delta = 4;//(int) getParentModule()->par("delta");
+		int delta = 2;//(int) getParentModule()->par("delta");
 		int inp[2] = {diffHP, diffMP};
 		
-		int result = fuzzy_inference(inp, 2, delta);
+		int result;
+		if (currentDelayHP > (wantedDelayHP + 100)) {
+		    // HP is not stable yet, so ignore MP by setting its input to 0
+		    int inp[2] = { diffHP, 0 };
+		    ev << "HP not stable. Ignoring MP in fuzzy inference." << endl;
+		    result = fuzzy_inference(inp, 2, delta);
+		} else {
+		    // HP is stable, now include diffMP
+		    int inp[2] = { diffHP, diffMP };
+		    ev << "HP stable. Using both HP and MP in fuzzy inference." << endl;
+		    result = fuzzy_inference(inp, 2, delta);
+		}
+		//int result = fuzzy_inference(inp, 2, delta);
 		result_dep.record (result);
 		ev << "Fuzzy Output = " << result << "\n";
 
@@ -610,6 +622,10 @@ void FLC::handleMessage(cMessage *msg)
 		if (new_W_HP>B) new_W_HP = B-1;
 		if (new_W_HP<1) new_W_HP = 1;
 
+//		if (currentDelayHP > wantedDelayHP) {
+//		    ev << "HP delay still too high! Preventing W_HP from dropping too fast." << endl;
+//		    new_W_HP = max(new_W_HP, W_HP);
+//		}
 
 		cPar& W_HP_r = getParentModule()->getSubmodule("scheduler")->par("W_HP");
 		W_HP_r.setIntValue(new_W_HP);
